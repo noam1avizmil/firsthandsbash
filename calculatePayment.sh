@@ -39,9 +39,11 @@ elif [[ $error -eq 0 ]] ; then
         # sed is the stream editor in bash, where s is for substitution, $ is the end of the line, + is the last added unwanted +, // is replacing it with nothing 
     done
     printf "Total purchase price : %.2f\n" "$sum"
+    sum=$(printf "%.2f" "$sum") #-> saving rounded by two after prints?
     #change_maybe -> he owes money if positive else we owe change
     change_maybe=$(echo "$sum - ${arr_of_params[${#arr_of_params[@]}-1]}" | bc)
     change_maybe=$(printf "%.2f" "$change_maybe")
+
     #change_for_sure is to print also decimal without arithmetical errors :)
     #change maybe gets rounded so 0.00002 will not be counted as bigger than 0 
     change_for_sure=$(echo "${arr_of_params[${#arr_of_params[@]}-1]} - $sum" | bc)
