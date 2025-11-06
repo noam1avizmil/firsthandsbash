@@ -29,14 +29,14 @@ if  [[ $error -eq 1 ]] ; then
 elif [[ $error -eq 0 ]] ; then 
     sum=0
     for ((i=0; i<$((${#arr_of_params[@]}-1)) ; i++)) ; do
-        curr=$(cat ${arr_of_params[i]} | grep -Eo '[0-9]+(\.[0-9]+)?'|tr '\n' '+'|head -c -1 )
+        curr=$(cat ${arr_of_params[i]} | grep -Eo '[0-9]+(\.[0-9]+)?'|tr '\n' '+'|sed 's/+$//' )
         if [[ -z $curr ]] ; then 
             curr=0
         fi
         sum=$(echo "$sum + $curr" | bc )
         # we are using piping to first read the file and then look for the numbers with grep -E for regex and o for only matching numbers that mathc, int or maybe also float. 
         # the (.)? is for the option that we may have point and numbers(float)
-        # head -c counts the chars we want (including all) and chosess the wanted, by length of the string so head -c -1 chosess all except the last +
+        # sed is the stream editor in bash, where s is for substitution, $ is the end of the line, + is the last added unwanted +, // is replacing it with nothing 
     done
     printf "Total purchase price : %.2f\n" "$sum"
     #change_maybe -> he owes money if positive else we owe change
@@ -57,3 +57,8 @@ elif [[ $error -eq 0 ]] ; then
         echo "Exact payment"
     fi
 fi
+
+
+
+
+
