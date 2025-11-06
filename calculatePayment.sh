@@ -43,11 +43,17 @@ elif [[ $error -eq 0 ]] ; then
     change_maybe=$(echo "$sum - ${arr_of_params[${#arr_of_params[@]}-1]}" | bc)
     #change_for_sure is to print also decimal without arithmetical errors :)
     change_for_sure=$(echo "${arr_of_params[${#arr_of_params[@]}-1]} - $sum" | bc)
-    if [[ $change_maybe > 0 ]] ; then
+
+    owe_money=$(echo "$change_maybe > 0" | bc)
+    #returns like true/false (1/0) for >0 or not |bc is for computing rational numbers
+    # we will use only the true becasue false also mentioning equal to 0
+    owe_chagne=$(echo "$change_maybe < 0" | bc)
+    #now we get 1 if it is less and not equal to 0 so we are safe and tackling the 0 issue from owe_money
+    if [[ $owe_money -eq 1 ]] ; then
         printf "You need to add %.2f shekel to pay the bill\n" "$change_maybe"
-    elif [[ $change_maybe < 0 ]] ; then
+    elif [[ $owe_chagne -eq 1 ]] ; then
         printf "Your change is %.2f shekel\n" "$change_for_sure"
-    elif [[ $change_maybe == 0 ]] ; then
+    else 
         echo "Exact payment"
     fi
 fi
