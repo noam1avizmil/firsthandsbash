@@ -2,7 +2,7 @@
 # Making sure we recieve all parameters
 arr_of_params=($@)
 error=0
-help_message="Usage: calculatePayment.sh <vaild_file_name> [More_Files] ... <money>"
+help_message="Usage : calculatePayment.sh <valid_file_name> [More_Files] ... <money>"
 regex_numbers="^[0-9]+([.][0-9]+)?$"
 # checking if the parameters are populated using condition with -z 
 if [[ ${#arr_of_params[@]} -lt 2 ]] ; then
@@ -39,7 +39,7 @@ elif [[ $error -eq 0 ]] ; then
         # sed is the stream editor in bash, where s is for substitution, $ is the end of the line, + is the last added unwanted +, // is replacing it with nothing 
     done
     printf "Total purchase price : %.2f\n" "$sum"
-    sum=$(printf "%.2f" "$sum") #-> saving rounded by two after prints?
+    #sum=$(printf "%.2f" "$sum") #-> saving rounded by two after prints?
     #change_maybe -> he owes money if positive else we owe change
     change_maybe=$(echo "$sum - ${arr_of_params[${#arr_of_params[@]}-1]}" | bc)
     change_maybe=$(printf "%.2f" "$change_maybe")
