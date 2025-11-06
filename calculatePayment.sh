@@ -9,7 +9,7 @@ if [[  -z ${arr_of_params[0]} ||  -z ${arr_of_params[${#arr_of_params[@]}-1]} ]]
     empty_params=0;
     for((i = 0; i < 2; i++)); do
         if [[ -z ${arr_of_params[i]} ]] ; then
-           empty_params=$((empty_params + 1))
+           empty_params=$i
         fi
     done
     >&2 echo "Number of parameters received : $empty_params"
