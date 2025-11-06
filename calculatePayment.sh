@@ -29,7 +29,7 @@ if  [[ $error -eq 1 ]] ; then
 elif [[ $error -eq 0 ]] ; then 
     sum=0
     for((i=0; i<$((${#arr_of_params[@]}-1)) ; i++)) ; do
-        sum=$((sum + $( cat ${arr_of_params[i]} | grep -Eo '[0-9]+(\.[0-9]+)?'|tr '+' '\n' )))
+        sum=$((sum + $( cat ${arr_of_params[i]} | grep -Eo '[0-9]+(\.[0-9]+)?'|tr '\n' '+' )))
         # we are using piping to first read the file and then look for the numbers with grep -E for regex and o for only matching numbers that mathc, int or maybe also float. 
         # the (.)? is for the option that we may have point and numbers(float)
     done
