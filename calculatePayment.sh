@@ -57,8 +57,3 @@ elif [[ $error -eq 0 ]] ; then
         echo "Exact payment"
     fi
 fi
-
-
-
-
-
