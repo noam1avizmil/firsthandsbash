@@ -17,7 +17,7 @@ if [[  -z ${arr_of_params[0]} ||  -z ${arr_of_params[${#arr_of_params[@]}-1]}]] 
 
 #if we dont exit we can continue with the compution 
 elif  [[ ! ${arr_of_params[${#arr_of_params[@]}-1]} =~ $regex_numbers ]] ; then
-    >&2 echo "Not a valid number : ${arr_of_params[-1]}"
+    >&2 echo "Not a valid number : ${arr_of_params[${#arr_of_params[@]}-1]}"
     error=1
 
 else 
@@ -40,9 +40,9 @@ elif [[ $error -eq 0 ]] ; then
     done
     printf "Total purchase price : %.2f\n" "$sum"
     if [[ ${arr_of_params[${#arr_of_params[@]}-1]} -lt $sum ]] ; then
-        printf "You need to add %.2f shekel to pay the bill\n" "$(($sum - ${arr_of_params[-1]}))"
+        printf "You need to add %.2f shekel to pay the bill\n" "$(($sum - ${arr_of_params[${#arr_of_params[@]}-1]}))"
     elif [[ ${arr_of_params[${#arr_of_params[@]}-1]} -gt $sum ]] ; then
-        printf "Your change is %.2f shekel\n" "$((${arr_of_params[-1]} - $sum))"
+        printf "Your change is %.2f shekel\n" "$((${arr_of_params[${#arr_of_params[@]}-1]} - $sum))"
     elif [[ ${arr_of_params[${#arr_of_params[@]}-1]} -eq $sum ]] ; then
         echo "Exact payment"
     fi
