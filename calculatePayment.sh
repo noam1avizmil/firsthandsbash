@@ -5,7 +5,7 @@ error=0
 help_message="Usage: calculatePayment.sh <vaild_file_name> [More_Files] ... <money>"
 regex_numbers="^[0-9]+([.][0-9]+)?$"
 # checking if the parameters are populated using condition with -z 
-if [[ ${#arr_of_params[@]}<2 ]] ; then
+if [[ ${#arr_of_params[@]} -lt 2 ]] ; then
     empty_params=${#arr_of_params[@]}
     >&2 echo "Number of parameters received : $empty_params"
     error=1
