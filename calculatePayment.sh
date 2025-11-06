@@ -17,7 +17,7 @@ if [[  -z ${arr_of_params[0]} ||  -z ${arr_of_params[${#arr_of_params[@]}-1]} ]]
 
 #if we dont exit we can continue with the compution 
 elif  [[ ! ${arr_of_params[${#arr_of_params[@]}-1]} =~ $regex_numbers ]] ; then
-    >&2 echo "Not a valid number : ${#arr_of_params[@]}"
+    >&2 echo "Not a valid number : ${arr_of_params[${#arr_of_params[@]}-1]}"
     error=1
 
 else 
