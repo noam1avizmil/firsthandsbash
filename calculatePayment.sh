@@ -5,7 +5,7 @@ error=0
 help_message="Usage: calculatePayment.sh <vaild_file_name> [More_Files] ... <money>"
 regex_numbers="^[0-9]+([.][0-9]+)?$"
 # checking if the parameters are populated using condition with -z 
-if [[  -z ${arr_of_params[0]} ||  -z ${arr_of_params[${#arr_of_params[@]}-1]}]] ; then
+if [[  -z ${arr_of_params[0]} ||  -z ${arr_of_params[${#arr_of_params[@]}-1]} ]] ; then
     empty_params=0;
     for((i = 0; i < 2; i++)); do
         if [[ -z ${arr_of_params[i]} ]] ; then
